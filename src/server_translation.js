@@ -182,7 +182,7 @@ Zotero.Server.Translation.Web.prototype = {
 				var couldHaveTranslator = false;
 				for(var i=0, translator; translator = translatorData[0][i]; i++) {
 					if(translator.target
-							&& translator.runMode === Zotero.Translator.RUN_MODE_IN_BROWSER) {
+							&& translator.runMode >= Zotero.Translator.RUN_MODE_IN_BROWSER) {
 						couldHaveTranslator = true;
 						break;
 					}
