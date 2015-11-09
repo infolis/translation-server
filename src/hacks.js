@@ -275,7 +275,17 @@ Zotero.Utilities.itemToServerJSON = function(item) {
                 Zotero.debug("itemToServerJSON: Discarded field "+field+": field not valid for type "+item.itemType, 3);
             }
         } else if (field === "attachments") {
-            newItem[field] = val;
+            // keep only pdf
+            newVal = [];
+            if (!val) continue;
+            for (att in val) {
+                if (att.mimeType && att.mimeType == 'application/pdf') {
+                    newVal.push(att);
+                }
+            }
+            if (newVal.length > 0) {
+                newItem[field] = newVal;
+            }
         } else {
             Zotero.debug("itemToServerJSON: Discarded unknown field "+field, 3);
         }
